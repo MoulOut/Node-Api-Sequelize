@@ -1,11 +1,12 @@
-import express from 'express';
+const express = require('express');
+const routes = require('./routes');
 
 const app = express();
 
-app.use(express.json());
-
-app.get('/test', (req, res) => {
-  res.status(200).send({ message: 'Welcome to your new API' });
+app.get('', (req, res) => {
+  res.status(200).json('Courses API!');
 });
 
-export default app;
+routes(app);
+
+module.exports = app;
