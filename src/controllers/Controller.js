@@ -64,6 +64,7 @@ class Controller {
       if (isDeleted) {
         return res.status(204).json();
       }
+
       return res.status(404).json({ message: 'Registry not found.' });
     } catch (error) {
       throw new Error(`Error:${error.message}`);
