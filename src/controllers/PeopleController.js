@@ -19,7 +19,7 @@ class PeopleController extends Controller {
 
       return res.status(200).json(registrationList);
     } catch (error) {
-      throw new Error(error.message);
+      return res.status(500).json({ Error: error.message });
     }
   }
 }
