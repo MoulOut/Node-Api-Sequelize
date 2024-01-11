@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       People.hasMany(models.Registration, {
         foreignKey: 'student_id',
         scope: { status: 'registred' },
-        as: 'registredClasses'
+        as: 'registredClasses',
       });
     }
   }
@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'People',
       tableName: 'peoples',
+      paranoid: true,
     }
   );
   return People;
