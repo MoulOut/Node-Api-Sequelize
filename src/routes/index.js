@@ -1,9 +1,8 @@
 const express = require('express');
-const pessoas = require('./peopleRoutes.js');
-const courses = require('./courseRoutes.js');
-const categories = require('./categorieRoutes.js');
-const registrations = require('./registrationRoutes.js');
+const pessoas = require('./peoplesRoutes.js');
+const courses = require('./coursesRoutes.js');
+const categories = require('./categoriesRoutes.js');
 
 module.exports = (app) => {
-  app.use(express.json(), pessoas, courses, categories, registrations);
+  app.use(express.json(), pessoas, courses, categories, );
 };

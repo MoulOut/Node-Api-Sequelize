@@ -1,7 +1,9 @@
 const { Router } = require('express');
 const PeopleController = require('../controllers/PeopleController.js');
+const RegistrationController = require('../controllers/RegistrationController.js');
 
 const peopleController = new PeopleController();
+const registrationController = new RegistrationController();
 
 const router = Router();
 
@@ -11,6 +13,9 @@ router.get('/peoples/:id', (req, res) => peopleController.getById(req, res));
 router.put('/peoples/:id', (req, res) => peopleController.updateById(req, res));
 router.delete('/peoples/:id', (req, res) =>
   peopleController.deleteById(req, res)
+);
+router.post('/peoples/:studentId/registrations', (req, res) =>
+  registrationController.Create(req, res)
 );
 
 module.exports = router;
