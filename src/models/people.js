@@ -4,7 +4,11 @@ module.exports = (sequelize, DataTypes) => {
   class People extends Model {
     static associate(models) {
       People.hasMany(models.Course, { foreignKey: 'teacher_id' });
-      People.hasMany(models.Registration, { foreignKey: 'student_id' });
+      People.hasMany(models.Registration, {
+        foreignKey: 'student_id',
+        scope: { status: 'registred' },
+        as: 'registredClasses'
+      });
     }
   }
   People.init(

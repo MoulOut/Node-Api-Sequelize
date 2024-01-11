@@ -14,6 +14,9 @@ router.put('/peoples/:id', (req, res) => peopleController.updateById(req, res));
 router.delete('/peoples/:id', (req, res) =>
   peopleController.deleteById(req, res)
 );
+router.get('/peoples/:studentId/registrations', (req, res) =>
+  peopleController.getRegistrations(req, res)
+);
 router.post('/peoples/:studentId/registrations', (req, res) =>
   registrationController.Create(req, res)
 );

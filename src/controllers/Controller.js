@@ -20,7 +20,7 @@ class Controller {
 
       return res.status(200).json(registry);
     } catch (error) {
-      throw new Error(`Error:${error.message}`);
+      throw new Error(error.message);
     }
   }
 
@@ -31,7 +31,7 @@ class Controller {
 
       return res.status(201).json(newRegistry);
     } catch (error) {
-      throw new Error(`Error:${error.message}`);
+      throw new Error(error.message);
     }
   }
 
@@ -52,7 +52,7 @@ class Controller {
 
       return res.status(404).json({ message: 'Registry not found.' });
     } catch (error) {
-      throw new Error(`Error:${error.message}`);
+      throw new Error(error.message);
     }
   }
 
@@ -67,7 +67,7 @@ class Controller {
 
       return res.status(404).json({ message: 'Registry not found.' });
     } catch (error) {
-      throw new Error(`Error:${error.message}`);
+      throw new Error(error.message);
     }
   }
 }

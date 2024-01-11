@@ -10,7 +10,11 @@ class Services {
   }
 
   async getRegistryById(id) {
-    return dataSource[this.model].findByPk(id);
+    const registry = await dataSource[this.model].findByPk(id);
+    if (registry) {
+      return registry;
+    }
+    throw new Error('Registry not Found.');
   }
 
   async createRegistry(registryData) {
@@ -18,9 +22,12 @@ class Services {
   }
 
   async updateRegistryById(id, newData) {
-    const listOfupdatedRegistries = await dataSource[this.model].update(newData, { where: { id: id } });
-  
-    if(listOfupdatedRegistries[0]){
+    const listOfupdatedRegistries = await dataSource[this.model].update(
+      newData,
+      { where: { id: id } }
+    );
+
+    if (listOfupdatedRegistries[0]) {
       return true;
     }
 

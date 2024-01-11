@@ -7,6 +7,21 @@ class PeopleController extends Controller {
   constructor() {
     super(peopleServices);
   }
+
+  async getRegistrations(req, res) {
+    const { studentId } = req.params;
+    try {
+      const registrationList = await peopleServices.getStudentRegistrations(Number(studentId));
+
+      if(registrationList instanceof Error){
+        return res.status(404).json({Error: registrationList.message});
+      }
+
+      return res.status(200).json(registrationList);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 }
 
 module.exports = PeopleController;
