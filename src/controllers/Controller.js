@@ -29,7 +29,7 @@ class Controller {
     try {
       const newRegistry = await this.serviceEntity.createRegistry(registryData);
 
-      return res.status(200).json(newRegistry);
+      return res.status(201).json(newRegistry);
     } catch (error) {
       throw new Error(`Error:${error.message}`);
     }
