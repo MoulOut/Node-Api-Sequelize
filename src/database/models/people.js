@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       People.hasMany(models.Course, { foreignKey: 'teacher_id' });
       People.hasMany(models.Registration, {
         foreignKey: 'student_id',
-        // scope: { status: 'registred' }, scope test
+        scope: { status: 'registred' },
         as: 'registredClasses',
       });
     }

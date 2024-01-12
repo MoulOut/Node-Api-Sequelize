@@ -26,7 +26,7 @@ class Services {
     if (registry) {
       return registry;
     }
-    return new Error('Registry not found.');
+    throw new Error('Registry not found.');
   }
 
   async createRegistry(registryData) {
