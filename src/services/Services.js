@@ -6,7 +6,19 @@ class Services {
   }
 
   async getAllRegistries() {
-    return dataSource[this.model].findAll();
+    const registriesList = dataSource[this.model].findAll();
+    if (registriesList) {
+      return registriesList;
+    }
+    return new Error('Registries not found');
+  }
+
+  async getRegistriesByScope(scope) {
+    const registriesList = dataSource[this.model].scope(scope).findAll();
+    if (registriesList) {
+      return registriesList;
+    }
+    return new Error('Registries not found');
   }
 
   async getRegistryById(id) {
@@ -14,11 +26,15 @@ class Services {
     if (registry) {
       return registry;
     }
-    throw new Error('Registry not Found.');
+    return new Error('Registry not found.');
   }
 
   async createRegistry(registryData) {
-    return dataSource[this.model].create(registryData);
+    const newRegistry = dataSource[this.model].create(registryData);
+    if (newRegistry) {
+      return newRegistry;
+    }
+    return new Error('Registry not found.');
   }
 
   async updateRegistryById(id, newData) {

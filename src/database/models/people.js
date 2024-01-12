@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       People.hasMany(models.Course, { foreignKey: 'teacher_id' });
       People.hasMany(models.Registration, {
         foreignKey: 'student_id',
-        scope: { status: 'registred' },
+        // scope: { status: 'registred' }, scope test
         as: 'registredClasses',
       });
     }
@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'People',
       tableName: 'peoples',
       paranoid: true,
+      defaultScope: { where: { active: true } },
+      scopes: {
+        allRegistries: { where: {} },
+      },
     }
   );
   return People;

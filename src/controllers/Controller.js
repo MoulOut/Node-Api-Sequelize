@@ -7,6 +7,10 @@ class Controller {
     try {
       const registriesList = await this.serviceEntity.getAllRegistries();
 
+      if (registriesList instanceof Error){
+        return res.status(404).json({Error: registriesList.message});
+      }
+
       return res.status(200).json(registriesList);
     } catch (error) {
       return res.status(500).json({ Error: error.message });
@@ -17,6 +21,10 @@ class Controller {
     const { id } = req.params;
     try {
       const registry = await this.serviceEntity.getRegistryById(Number(id));
+
+      if (registry instanceof Error) {
+        return res.status(404).json({ Error: registry.message });
+      }
 
       return res.status(200).json(registry);
     } catch (error) {
