@@ -13,18 +13,27 @@ router.get('/peoples/all', (req, res) =>
 );
 router.post('/peoples', (req, res) => peopleController.Create(req, res));
 router.get('/peoples/:id', (req, res) => peopleController.getById(req, res));
-router.put('/peoples/:id', (req, res) => peopleController.updateById(req, res));
+router.put('/peoples/:id', (req, res) => peopleController.update(req, res));
 router.delete('/peoples/:id', (req, res) =>
-  peopleController.deleteById(req, res)
+  peopleController.delete(req, res)
 );
-router.get('/peoples/:studentId/registrations', (req, res) =>
+router.get('/peoples/:student_id/registrations', (req, res) =>
   peopleController.getActiveRegistrations(req, res)
 );
-router.get('/peoples/:studentId/registrations/all', (req, res) =>
+router.get('/peoples/:student_id/registrations/all', (req, res) =>
   peopleController.getAllRegistrations(req, res)
 );
-router.post('/peoples/:studentId/registrations', (req, res) =>
+router.get('/peoples/:student_id/registrations/:id', (req, res) =>
+  registrationController.getOne(req, res)
+);
+router.post('/peoples/:student_id/registrations', (req, res) =>
   registrationController.Create(req, res)
+);
+router.put('/peoples/:student_id/registrations/:id', (req, res) =>
+  registrationController.update(req, res)
+);
+router.delete('/peoples/:student_id/registrations/:id', (req, res) =>
+  registrationController.delete(req, res)
 );
 
 module.exports = router;

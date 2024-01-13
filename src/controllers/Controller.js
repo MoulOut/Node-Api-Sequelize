@@ -1,3 +1,5 @@
+const idConversor = require('../utils/StringConversorHelper.js');
+
 class Controller {
   constructor(serviceEntity) {
     this.serviceEntity = serviceEntity;
@@ -7,8 +9,8 @@ class Controller {
     try {
       const registriesList = await this.serviceEntity.getAllRegistries();
 
-      if (registriesList instanceof Error){
-        return res.status(404).json({Error: registriesList.message});
+      if (registriesList instanceof Error) {
+        return res.status(404).json({ Error: registriesList.message });
       }
 
       return res.status(200).json(registriesList);
@@ -32,6 +34,22 @@ class Controller {
     }
   }
 
+  async getOne(req, res) {
+    const { ...params } = req.params;
+    const where = idConversor(params);
+    try {
+      const registry = await this.serviceEntity.getOneRegistry(where);
+
+      if (registry instanceof Error) {
+        return res.status(404).json({ Error: registry.message });
+      }
+
+      return res.status(200).json(registry);
+    } catch (error) {
+      return res.status(500).json({ Error: error.message });
+    }
+  }
+
   async Create(req, res) {
     const registryData = req.body;
     try {
@@ -43,12 +61,14 @@ class Controller {
     }
   }
 
-  async updateById(req, res) {
-    const { id } = req.params;
+  async update(req, res) {
+    const { ...params } = req.params;
     const newRegistryData = req.body;
+    const where = idConversor(params);
+
     try {
       const isUpdated = await this.serviceEntity.updateRegistryById(
-        Number(id),
+        where,
         newRegistryData
       );
 
@@ -64,10 +84,12 @@ class Controller {
     }
   }
 
-  async deleteById(req, res) {
-    const { id } = req.params;
+  async delete(req, res) {
+    const { params } = req.params;
+    const where = idConversor(params);
+
     try {
-      const isDeleted = await this.serviceEntity.deleteRegistryById(Number(id));
+      const isDeleted = await this.serviceEntity.deleteRegistryById(where);
 
       if (isDeleted) {
         return res.status(204).json();

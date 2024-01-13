@@ -9,10 +9,10 @@ class PeopleController extends Controller {
   }
 
   async getActiveRegistrations(req, res) {
-    const { studentId } = req.params;
+    const { student_id } = req.params;
     try {
       const registrationList = await peopleServices.getActiveStudentRegistrations(
-        Number(studentId)
+        Number(student_id)
       );
 
       if (registrationList instanceof Error) {
@@ -26,10 +26,10 @@ class PeopleController extends Controller {
   }
 
   async getAllRegistrations(req, res) {
-    const { studentId } = req.params;
+    const { student_id } = req.params;
     try {
       const registrationList = await peopleServices.getAllStudentRegistrations(
-        Number(studentId)
+        Number(student_id)
       );
 
       if (registrationList instanceof Error) {

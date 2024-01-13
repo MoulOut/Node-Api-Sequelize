@@ -29,6 +29,14 @@ class Services {
     throw new Error('Registry not found.');
   }
 
+  async getOneRegistry(whereObj) {
+    const registry = await dataSource[this.model].findOne({where: {...whereObj}});
+    if (registry) {
+      return registry;
+    }
+    throw new Error('Registry not found.');
+  }
+
   async createRegistry(registryData) {
     const newRegistry = dataSource[this.model].create(registryData);
     if (newRegistry) {
@@ -37,10 +45,10 @@ class Services {
     return new Error('Registry not found.');
   }
 
-  async updateRegistryById(id, newData) {
+  async updateRegistryById(where, newData) {
     const listOfupdatedRegistries = await dataSource[this.model].update(
       newData,
-      { where: { id: id } }
+      { where: { ...where } }
     );
 
     if (listOfupdatedRegistries[0]) {
@@ -50,8 +58,8 @@ class Services {
     return false;
   }
 
-  async deleteRegistryById(id) {
-    return dataSource[this.model].destroy({ where: { id: id } });
+  async deleteRegistryById(where) {
+    return dataSource[this.model].destroy({ where: { ...where } });
   }
 }
 
