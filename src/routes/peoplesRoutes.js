@@ -23,6 +23,9 @@ router.get('/peoples/:student_id/registrations', (req, res) =>
 router.get('/peoples/:student_id/registrations/all', (req, res) =>
   peopleController.getAllRegistrations(req, res)
 );
+router.get('/peoples/:student_id/registrations/confirmed', (req, res) =>
+  registrationController.getRegistrationsByStudent(req, res)
+);
 router.get('/peoples/:student_id/registrations/:id', (req, res) =>
   registrationController.getOne(req, res)
 );
