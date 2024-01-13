@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         scope: { status: 'registred' },
         as: 'registredClasses',
       });
+      People.hasMany(models.Registration, {
+        foreignKey: 'student_id',
+        as: 'allRegistrations',
+      });
     }
   }
   People.init(

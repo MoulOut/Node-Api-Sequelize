@@ -18,7 +18,10 @@ router.delete('/peoples/:id', (req, res) =>
   peopleController.deleteById(req, res)
 );
 router.get('/peoples/:studentId/registrations', (req, res) =>
-  peopleController.getRegistrations(req, res)
+  peopleController.getActiveRegistrations(req, res)
+);
+router.get('/peoples/:studentId/registrations/all', (req, res) =>
+  peopleController.getAllRegistrations(req, res)
 );
 router.post('/peoples/:studentId/registrations', (req, res) =>
   registrationController.Create(req, res)

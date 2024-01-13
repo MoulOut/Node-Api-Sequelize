@@ -5,10 +5,21 @@ class PeopleServices extends Services {
     super('People');
   }
 
-  async getStudentRegistrations(id) {
+  async getActiveStudentRegistrations(id) {
     try {
       const student = await super.getRegistryById(id);
       const registrationList = await student.getRegistredClasses();
+
+      return registrationList;
+    } catch (error) {
+      return new Error(error.message);
+    }
+  }
+
+  async getAllStudentRegistrations(id) {
+    try {
+      const student = await super.getRegistryById(id);
+      const registrationList = await student.getAllRegistrations();
 
       return registrationList;
     } catch (error) {
