@@ -5,8 +5,10 @@ class Services {
     this.model = modelName;
   }
 
-  async getAllRegistries() {
-    const registriesList = dataSource[this.model].findAll();
+  async getAllRegistries(whereObj = {}) {
+    const registriesList = dataSource[this.model].findAll({
+      where: { ...whereObj },
+    });
     if (registriesList) {
       return registriesList;
     }
@@ -30,7 +32,9 @@ class Services {
   }
 
   async getOneRegistry(whereObj) {
-    const registry = await dataSource[this.model].findOne({where: {...whereObj}});
+    const registry = await dataSource[this.model].findOne({
+      where: { ...whereObj },
+    });
     if (registry) {
       return registry;
     }
