@@ -63,7 +63,7 @@ class Services {
     return new Error('Registry not found.');
   }
 
-  async updateRegistryById(where, newData) {
+  async updateRegistry(where, newData) {
     const listOfupdatedRegistries = await dataSource[this.model].update(
       newData,
       { where: { ...where } }

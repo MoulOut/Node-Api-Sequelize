@@ -11,9 +11,8 @@ class PeopleController extends Controller {
   async getActiveRegistrations(req, res) {
     const { student_id } = req.params;
     try {
-      const registrationList = await peopleServices.getActiveStudentRegistrations(
-        Number(student_id)
-      );
+      const registrationList =
+        await peopleServices.getActiveStudentRegistrations(Number(student_id));
 
       if (registrationList instanceof Error) {
         return res.status(404).json({ Error: registrationList.message });
@@ -51,6 +50,25 @@ class PeopleController extends Controller {
       }
 
       return res.status(200).json(peopleList);
+    } catch (error) {
+      return res.status(500).json({ Error: error.message });
+    }
+  }
+
+  async cancelPeopleRegistry(req, res) {
+    const { student_id } = req.params;
+    try {
+      const isCanceled = await peopleServices.cancelPeopleAndRegistry(
+        Number(student_id)
+      );
+
+      if (isCanceled instanceof Error) {
+        return res.status(404).json({ Error: isCanceled.message });
+      }
+
+      return res.status(200).json({
+        message: `registrations ref to student ${student_id} canceled.`,
+      });
     } catch (error) {
       return res.status(500).json({ Error: error.message });
     }

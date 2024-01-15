@@ -67,7 +67,7 @@ class Controller {
     const where = idConversor(params);
 
     try {
-      const isUpdated = await this.serviceEntity.updateRegistryById(
+      const isUpdated = await this.serviceEntity.updateRegistry(
         where,
         newRegistryData
       );
