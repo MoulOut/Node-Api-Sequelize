@@ -63,10 +63,10 @@ class Services {
     return new Error('Registry not found.');
   }
 
-  async updateRegistry(where, newData) {
+  async updateRegistry(where, newData, transaction = {}) {
     const listOfupdatedRegistries = await dataSource[this.model].update(
       newData,
-      { where: { ...where } }
+      { where: { ...where }, transaction: transaction }
     );
 
     if (listOfupdatedRegistries[0]) {
