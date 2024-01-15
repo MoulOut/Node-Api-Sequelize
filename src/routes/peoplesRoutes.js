@@ -14,9 +14,7 @@ router.get('/peoples/all', (req, res) =>
 router.post('/peoples', (req, res) => peopleController.Create(req, res));
 router.get('/peoples/:id', (req, res) => peopleController.getById(req, res));
 router.put('/peoples/:id', (req, res) => peopleController.update(req, res));
-router.delete('/peoples/:id', (req, res) =>
-  peopleController.delete(req, res)
-);
+router.delete('/peoples/:id', (req, res) => peopleController.delete(req, res));
 router.get('/peoples/:student_id/registrations', (req, res) =>
   peopleController.getActiveRegistrations(req, res)
 );
@@ -25,6 +23,9 @@ router.get('/peoples/:student_id/registrations/all', (req, res) =>
 );
 router.get('/peoples/:student_id/registrations/confirmed', (req, res) =>
   registrationController.getRegistrationsByStudent(req, res)
+);
+router.get('/peoples/registrations/full', (req, res) =>
+  registrationController.getFullCourses(req, res)
 );
 router.get('/peoples/:student_id/registrations/:id', (req, res) =>
   registrationController.getOne(req, res)

@@ -4,5 +4,10 @@ const courses = require('./coursesRoutes.js');
 const categories = require('./categoriesRoutes.js');
 
 module.exports = (app) => {
-  app.use(express.json(), pessoas, courses, categories, );
+  app.use(
+    express.json(), 
+    pessoas, 
+    courses, 
+    categories
+  );
 };

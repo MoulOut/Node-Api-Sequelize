@@ -43,11 +43,9 @@ class Services {
     throw new Error('Registry not found.');
   }
 
-  async getAndCountRegistries(whereObj) {
+  async getAndCountRegistries(options) {
     const registriesList = await dataSource[this.model].findAndCountAll({
-      where: { ...whereObj },
-      limit: 2,
-      order: [['id', 'ASC']],
+      ...options,
     });
 
     if (registriesList) {
